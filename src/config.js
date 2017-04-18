@@ -15,15 +15,15 @@ function _loadFile(path) {
   return settings;
 }
 
-var Config = function () {
+var Config = function (customConfigFile) {
   var settings = {},
       config_file = '';
   // load config from defaults or config file
 
   if (typeof(process) != "undefined" && process.env.STREAM_NODE_CONFIG_DIR) {
-    config_file = process.env.STREAM_NODE_CONFIG_DIR + '/getstream.js';
+    config_file = process.env.STREAM_NODE_CONFIG_DIR + (customConfigFile || '/getstream.js');
   } else {
-    config_file = process.cwd() + '/getstream.js';
+    config_file = process.cwd() + (customConfigFile || '/getstream.js');
   }
 
   var default_config_file = path.join(__dirname, 'config.default.js');
